@@ -1,15 +1,13 @@
 /*eslint-disable*/
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from './pages/Home'
-import QRscan from './pages/QRscanner'
+import QRscan from './pages/qrscanner/QRscanner'
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/scanner" element={<QRscan />} />
+          <Route path="/" element={<QRscan />} />
         </Routes>
       </BrowserRouter>
     </div>
