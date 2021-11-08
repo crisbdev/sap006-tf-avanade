@@ -64,7 +64,7 @@ function WebcamCapture() {
                 if (result === true) {
                   alert("Você esta com mascara")
                 } else {
-                  alert("Você nao esta com mascara");
+                  alert("Você nao esta com mascara!");
                 }
               })
               .catch(function (error) {
