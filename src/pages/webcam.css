@@ -1,0 +1,28 @@
+.webcamCapture {
+    overflow: hidden;
+    position: fixed;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    margin: auto;
+    justify-content: center;
+}
+
+.button-webcam{
+    display: flex;
+    position: absolute;
+    background-color: aliceblue;
+    justify-content: center;
+    margin-left: 45%;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-top: -100px;
+}
+.webcam {
+    width: 750px;
+    height: 850px;
+    margin-top: -150px;
+  
+}
