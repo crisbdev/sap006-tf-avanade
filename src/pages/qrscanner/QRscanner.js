@@ -1,7 +1,6 @@
-/* eslint-disable import/no-unresolved */
-/* ewline required at end of file but not found */
 import React, { useState } from 'react';
 import QrScan from 'react-qr-reader';
+import './index.css';
 
 function QRscanner() {
   const [qrscan, setQrscan] = useState('No result');
@@ -16,14 +15,22 @@ function QRscanner() {
     console.error(err);
   };
   return (
-    <div>
-      <div>
+    <div className="box">
+      <div className="qrscan">
         <QrScan
-          delay={300}
+          delay={900}
           onError={handleError}
           onScan={handleScan}
-          style={{ height: 240, width: 320 }}
         />
+      </div>
+      <div className="info">
+        <h1 className="title">QR Code Scan</h1>
+        <span className="subtitle">
+          Escaneie seu rosto para liberar a validação do certificado de vacina.
+        </span>
+        <button type="submit" className="btnQr">
+          Escanear QR Code
+        </button>
       </div>
     </div>
   );
