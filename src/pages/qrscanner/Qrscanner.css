@@ -6,10 +6,12 @@
 }
 
 .qrscan{
-  width: 27rem;
+  width: 30rem;
 }
+
 section {
   border-radius: 50%;
+
 }
 .info{
   display: flex;
@@ -56,3 +58,8 @@ section {
   text-decoration: none;
   align-items: center;
 }
+
+.camera {
+  padding: 79px;
+}
+
