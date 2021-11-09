@@ -18,6 +18,7 @@ function QRscanner() {
     <div className="box">
       <div className="qrscan">
         <QrScan
+          className="camera"
           delay={900}
           onError={handleError}
           onScan={handleScan}

@@ -9,7 +9,9 @@
 .qrscan{
   width: 242px;
 }
-
+section {
+  border-radius: 50%;
+}
 .info{
   display: flex;
   flex-direction: column;
