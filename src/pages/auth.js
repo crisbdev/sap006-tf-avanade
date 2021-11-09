@@ -1,9 +1,14 @@
 /*eslint-disable*/
 import React, { useRef, useCallback, useState } from "react";
+import { useHistory } from 'react-router-dom';
 import Webcam from "react-webcam";
 import "./webcam.css";
 import { v4 as uuid } from "uuid";
 import storage from "../services/firebaseConfig";
+import Modal from '../componentes/modal/modal';
+import Button from '../componentes/button/button';
+import errorIcon from '../img/error-icon.png';
+import sucessfulIcon from '../img/check-icon.png';
 
 const videoConstraints = {
   width: 400,
@@ -16,15 +21,26 @@ let endpoint =
   "https://demo-demo-talent.cognitiveservices.azure.com/" + "/face/v1.0/detect";
 
 function WebcamCapture() {
-  
+
   const webcamRef = useRef(null);
 
   const [url, setUrl] = useState("");
+  const [confirmModal, setConfirmModal] = useState(false);
+  const [errorModal, setErrorModal] = useState(false);
+  const history = useHistory();
+
+  const nextStep = () => {
+    history.push('/qr')
+  }
+
+  const goBack = () => {
+    history.push('/')
+  }
 
   const capture = useCallback(() => {
 
     const imageSrc = webcamRef.current.getScreenshot();
- 
+
     const id = uuid();
 
     const uploadTask = storage
@@ -60,11 +76,11 @@ function WebcamCapture() {
               .then(function (response) {
                 const result =
                   response.data[0].faceAttributes.mask.noseAndMouthCovered;
-                ///console.log(result)
+                console.log(result)
                 if (result === true) {
-                  alert("Você esta com mascara")
+                  setConfirmModal(true)
                 } else {
-                  alert("Você nao esta com mascara!");
+                  setErrorModal(true)
                 }
               })
               .catch(function (error) {
@@ -78,7 +94,7 @@ function WebcamCapture() {
     <>
       <div className="webcamCapture">
         <Webcam
-        className='webcam'
+          className='webcam'
           audio={false}
           ref={webcamRef}
           height={videoConstraints.heigth}
@@ -87,9 +103,41 @@ function WebcamCapture() {
           videoConstraints={videoConstraints}
         />
       </div>
-      <button className="button-webcam" onClick={capture}></button>
+      <Button
+        buttonClass="button-webcam"
+        onClick={capture}
+      ></Button>
+
+      {/* abrir modal de Erro */}
+      <Modal
+        isOpen={Boolean(errorModal)}
+        msg="Você não esta com máscara!"
+        icon={errorIcon}
+      >
+        <Button
+          buttonClass="btn-error"
+          onClick={goBack}
+        >
+          Voltar
+        </Button>
+      </Modal>
+
+      {/* abrir modal de confirmaçao */}
+      <Modal
+        isOpen={Boolean(confirmModal)}
+        msg="Você esta com máscara!"
+        icon={sucessfulIcon}
+      >
+        <Button
+          buttonClass="btn-next"
+          onClick={nextStep}
+        >
+          Próximo
+        </Button>
+      </Modal>
+
     </>
-    
+
   );
 }
 export default WebcamCapture;
