@@ -4,25 +4,26 @@ import { useHistory } from 'react-router-dom';
 import Webcam from "react-webcam";
 import "./webcam.css";
 import { v4 as uuid } from "uuid";
-import storage from "../services/firebaseConfig";
-import Modal from '../componentes/modal/modal';
-import Button from '../componentes/button/button';
-import errorIcon from '../img/error-icon.png';
-import sucessfulIcon from '../img/check-icon.png';
+import storage from '../../services/firebaseConfig';
+import Modal from '../../componentes/modal/modal';
+import Button from '../../componentes/button/button';
+import errorIcon from '../../assets/error-icon.png';
+import sucessfulIcon from '../../assets/check-icon.png';
+import CamLogo from '../../assets/camera.png';
 
 const videoConstraints = {
-  width: 400,
-  heigth: 1200,
-  facingMode: "user",
+  width: 100,
+  heigth: 600,
+  facingMode: 'user',
 };
-const axios = require("axios").default;
-let subscriptionKey = "d49f3175dda14a61ac18dd08f5bb95ce";
-let endpoint =
-  "https://demo-demo-talent.cognitiveservices.azure.com/" + "/face/v1.0/detect";
+const axios = require('axios').default;
+
+const subscriptionKey = 'd49f3175dda14a61ac18dd08f5bb95ce';
+const endpoint = 'https://demo-demo-talent.cognitiveservices.azure.com/' + '/face/v1.0/detect';
 
 function WebcamCapture() {
-
   const webcamRef = useRef(null);
+  const [loading, setLoading] = useState(false);
 
   const [url, setUrl] = useState("");
   const [confirmModal, setConfirmModal] = useState(false);
@@ -38,40 +39,40 @@ function WebcamCapture() {
   }
 
   const capture = useCallback(() => {
-
     const imageSrc = webcamRef.current.getScreenshot();
 
     const id = uuid();
 
     const uploadTask = storage
       .ref(`imagem/${id}`)
-      .putString(imageSrc, "data_url");
+      .putString(imageSrc, 'data_url');
     uploadTask.on(
-      "state_changed",
+      'state_changed',
       null,
       (error) => {
         console.log(error);
       },
       () => {
         storage
-          .ref("imagem")
+          .ref('imagem')
           .child(id)
           .getDownloadURL()
           .then((url) => {
-            setUrl(url)
+            setUrl(url);
+            setLoading(true) 
             axios({
-              method: "post",
+              method: 'post',
               url: endpoint,
               params: {
-                detectionModel: "detection_03",
+                detectionModel: 'detection_03',
                 returnFaceId: false,
-                returnFaceAttributes: "mask",
+                returnFaceAttributes: 'mask',
               },
 
               data: {
-                url: url,
+                url,
               },
-              headers: { "Ocp-Apim-Subscription-Key": subscriptionKey },
+              headers: { 'Ocp-Apim-Subscription-Key': subscriptionKey },
             })
               .then(function (response) {
                 const result =
@@ -83,16 +84,22 @@ function WebcamCapture() {
                   setErrorModal(true)
                 }
               })
-              .catch(function (error) {
+              .catch((error) => {
                 console.log(error);
               });
           });
-      }
+
+      },
     );
   }, []);
   return (
+
     <>
       <div className="webcamCapture">
+      {loading ? <img src={Loading} alt="Loading"></img> : false}
+
+        <img className="logo-cam" src={CamLogo} />
+
         <Webcam
           className='webcam'
           audio={false}

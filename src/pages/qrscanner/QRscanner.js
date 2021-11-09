@@ -1,4 +1,4 @@
-/* eslint-disable import/no-unresolved */
+/* eslint-disable  */
 /* ewline required at end of file but not found */
 import React, { useState } from 'react';
 import QrScan from 'react-qr-reader';
