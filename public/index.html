@@ -16,6 +16,71 @@
     -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <style type="text/css">
+
+#breathing-img {
+    width: 180px;
+    padding: 12px;
+    margin: 50px auto;
+    -webkit-animation: breathing 5s ease-out infinite normal;
+    animation: breathing 1s ease-out infinite normal;
+    font-family:'Lantinghei SC';
+    font-size: 16px;
+    color: #fff;
+    -webkit-font-smoothing: antialiased;
+    border-radius: 2px;
+    text-align: center;   
+    margin-top: 280px; 
+    margin-left: 120px;
+    }
+
+
+@-webkit-keyframes breathing {
+  0% {
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+  }
+
+  25% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+
+  60% {
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+  }
+
+  100% {
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+  }
+}
+
+@keyframes breathing {
+  0% {
+    -webkit-transform: scale(0.9);
+    -ms-transform: scale(0.9);
+    transform: scale(0.9);
+  }
+
+  25% {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+  }
+
+  60% {
+    -webkit-transform: scale(0.9);
+    -ms-transform: scale(0.9);
+    transform: scale(0.9);
+  }
+
+  100% {
+    -webkit-transform: scale(0.9);
+    -ms-transform: scale(0.9);
+    transform: scale(0.9);
+  }
+}
       .loading-div {
         background-color:  #ff5800;
         width: 1000px;
@@ -30,6 +95,8 @@
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root">
   <div class="loading-div">
+
+<img src="https://i.ibb.co/sgJrHX6/logo-avanade-icon.png" id="breathing-img">
 
     <h1>oi</h1>
   </div>
