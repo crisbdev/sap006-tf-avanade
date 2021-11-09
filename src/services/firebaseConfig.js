@@ -1,8 +1,9 @@
-/* eslint-disable no-unused-vars */
+/* eslint-disable  */
 import { initializeApp } from 'firebase/app';
 import firebase from 'firebase/compat/app';
 import 'firebase/storage';
 import 'firebase/compat/storage';
+
 
 const firebaseConfig = {
   apiKey: 'AIzaSyB4FFExJcW58tvCypBK0ds5dQh-nx-jwHI',

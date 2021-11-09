@@ -1,84 +1,93 @@
 /*eslint-disable*/
-import React, { useRef, useCallback, useState } from "react";
-import Webcam from "react-webcam";
-import "./webcam.css";
-import { v4 as uuid } from "uuid";
-import storage from "../services/firebaseConfig";
+import React, { useRef, useCallback, useState } from 'react';
+import Webcam from 'react-webcam';
+import './webcam.css';
+import { v4 as uuid } from 'uuid';
+import storage from '../services/firebaseConfig';
+import CamLogo from '../assets/camera.png';
+import Loading from '../assets/loading.gif';
 
 const videoConstraints = {
-  width: 400,
-  heigth: 1200,
-  facingMode: "user",
+  width: 100,
+  heigth: 600,
+  facingMode: 'user',
 };
-const axios = require("axios").default;
-let subscriptionKey = "d49f3175dda14a61ac18dd08f5bb95ce";
-let endpoint =
-  "https://demo-demo-talent.cognitiveservices.azure.com/" + "/face/v1.0/detect";
+const axios = require('axios').default;
+
+const subscriptionKey = 'd49f3175dda14a61ac18dd08f5bb95ce';
+const endpoint = 'https://demo-demo-talent.cognitiveservices.azure.com/' + '/face/v1.0/detect';
 
 function WebcamCapture() {
-  
   const webcamRef = useRef(null);
+  const [loading, setLoading] = useState(false);
 
-  const [url, setUrl] = useState("");
+  const [url, setUrl] = useState('');
 
   const capture = useCallback(() => {
-
     const imageSrc = webcamRef.current.getScreenshot();
- 
+
     const id = uuid();
 
     const uploadTask = storage
       .ref(`imagem/${id}`)
-      .putString(imageSrc, "data_url");
+      .putString(imageSrc, 'data_url');
     uploadTask.on(
-      "state_changed",
+      'state_changed',
       null,
       (error) => {
         console.log(error);
       },
       () => {
         storage
-          .ref("imagem")
+          .ref('imagem')
           .child(id)
           .getDownloadURL()
           .then((url) => {
-            setUrl(url)
+            setUrl(url);
+            setLoading(true) 
             axios({
-              method: "post",
+              method: 'post',
               url: endpoint,
               params: {
-                detectionModel: "detection_03",
+                detectionModel: 'detection_03',
                 returnFaceId: false,
-                returnFaceAttributes: "mask",
+                returnFaceAttributes: 'mask',
               },
 
               data: {
-                url: url,
+                url,
               },
-              headers: { "Ocp-Apim-Subscription-Key": subscriptionKey },
+              headers: { 'Ocp-Apim-Subscription-Key': subscriptionKey },
             })
-              .then(function (response) {
-                const result =
-                  response.data[0].faceAttributes.mask.noseAndMouthCovered;
-                ///console.log(result)
+              .then((response) => {
+                setLoading(false);
+                const result = response.data[0].faceAttributes.mask.noseAndMouthCovered;
+            
+                /// console.log(result)
                 if (result === true) {
-                  alert("Você esta com mascara")
+                  alert('Você esta com mascara');
                 } else {
-                  alert("Você nao esta com mascara!");
+                  alert('Você nao esta com mascara!');
                 }
               })
-              .catch(function (error) {
+              .catch((error) => {
                 console.log(error);
               });
           });
-      }
+
+      },
     );
   }, []);
   return (
+
     <>
       <div className="webcamCapture">
+      {loading ? <img src={Loading} alt="Loading"></img> : false}
+
+        <img className="logo-cam" src={CamLogo} />
+
         <Webcam
-        className='webcam'
+          className="webcam"
           audio={false}
           ref={webcamRef}
           height={videoConstraints.heigth}
@@ -87,9 +96,15 @@ function WebcamCapture() {
           videoConstraints={videoConstraints}
         />
       </div>
-      <button className="button-webcam" onClick={capture}></button>
+      <div className="text-pic">
+        <h3>Face Scan</h3>
+        <h4>Escaneie o seu rosto para liberar a validação do certificado de vacina</h4>
+      </div>
+
+      <button className="button-webcam" onClick={capture}>Escanear meu rosto</button>
+
     </>
-    
+
   );
 }
 export default WebcamCapture;
