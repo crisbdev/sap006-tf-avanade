@@ -1,0 +1,33 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(0, 0, 0, .5);
+    padding: 15px;
+}
+
+.modal-content {
+    background-color: none;
+    border-radius: 1rem;
+    width: 34rem;
+    margin: 15rem auto 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3rem;  
+}
+
+.iconStyle {
+    width: 10rem;
+
+}
+
+.times-circle {
+    color: var(--color-red);
+}
+  
+.check-circle{
+    color: var(--color-green);
+}

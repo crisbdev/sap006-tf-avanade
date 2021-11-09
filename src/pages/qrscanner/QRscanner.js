@@ -28,14 +28,23 @@ function QRscanner() {
   };
 
   return (
-    <div>
-      <div>
+    <div className="box">
+      <div className="qrscan">
         <QrScan
-          delay={300}
+          className="camera"
+          delay={900}
           onError={handleError}
           onScan={handleScan}
-          style={{ height: 240, width: 320 }}
         />
+      </div>
+      <div className="info">
+        <h1 className="title">QR Code Scan</h1>
+        <span className="subtitle">
+          Escaneie seu rosto para liberar a validação do certificado de vacina.
+        </span>
+        <button type="submit" className="btnQr">
+          Escanear QR Code
+        </button>
       </div>
     </div>
   );
