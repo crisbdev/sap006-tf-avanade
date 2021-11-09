@@ -6,6 +6,7 @@ import './Qrscanner.css';
 import firebase from 'firebase/compat/app';
 import 'firebase/firestore';
 import dataStore from '../../services/firebaseConfig';
+import Footer from '../../componentes/footer/footer.jsx';
 
 function QRscanner() {
  /// const ref = dataStore().collection("tokens")
@@ -69,16 +70,27 @@ function QRscanner() {
     <div>
           {qrscan ? <h1>Li o qr (dado)</h1> : false}
       <div>
-        {token.map((token) => (
-          <h1>{token.title}</h1>
-        ))}
      
+     <div className="box">
+      <div className="qrscan">
         <QrScan
-          delay={300}
+          className="camera"
+          delay={900}
           onError={handleError}
           onScan={handleScan}
-          style={{ height: 240, width: 320 }}
         />
+      </div>
+      <div className="info">
+        <h1 className="title">QR Code Scan</h1>
+        <span className="subtitle">
+          Escaneie seu rosto para liberar a validação do certificado de vacina.
+        </span>
+        <button type="submit" className="btnQr">
+          Escanear QR Code
+        </button>
+      </div>
+      <Footer />
+    </div>
       </div>
     </div>
   );
