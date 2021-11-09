@@ -5,6 +5,7 @@ import QrScan from 'react-qr-reader';
 import './Qrscanner.css';
 import firebase from 'firebase/compat/app';
 import dataStore from '../../services/firebaseConfig';
+import Footer from '../../componentes/footer/footer.jsx';
 
 function QRscanner() {
   const [qrscan, setQrscan] = useState('No result');
@@ -46,6 +47,7 @@ function QRscanner() {
           Escanear QR Code
         </button>
       </div>
+      <Footer />
     </div>
   );
 }
