@@ -35,7 +35,7 @@ function WebcamCapture() {
   }
 
   const goBack = () => {
-    history.push('/')
+    history.push('/cam')
   }
 
   const capture = useCallback(() => {
@@ -96,7 +96,7 @@ function WebcamCapture() {
 
     <>
       <div className="webcamCapture">
-      {loading ? <img src={Loading} alt="Loading"></img> : false}
+      {/* {loading ? <img src={Loading} alt="Loading"></img> : false} */}
 
         <img className="logo-cam" src={CamLogo} />
 

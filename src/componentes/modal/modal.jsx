@@ -30,14 +30,14 @@ function ModalMsg({
 
   return ReactDom.createPortal(
     <>
-      <section className="modal-overlay">
+      <div className="modal-overlay">
         <img className="iconStyle" src={icon} alt="message" />
         <div className="modal-content">
           <h2>{msg}</h2>
           {children}
           {onclick}
         </div>
-      </section>
+      </div>
     </>,
     portalRoot,
 
