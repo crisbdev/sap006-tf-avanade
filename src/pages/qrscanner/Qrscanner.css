@@ -1,3 +1,6 @@
+div{
+  z-index: 0;
+}
 .box {
   display: flex;
   flex-direction: column;
@@ -18,17 +21,12 @@
 }
 
 .qrscan{
-  overflow: hidden;
-  display: flex;
-  width: 600px;
-  height: 600px;
-  align-items: center;
-  margin: 0;
-  justify-content: center;
+  width: 30rem;
 }
 
 section {
   border-radius: 50%;
+
 }
 
 .info{
@@ -55,4 +53,29 @@ section {
   margin-left: 11rem;
   margin-right: 11rem;
   font-size: 2.1rem;
+}
+
+.btnQr {
+  width: 35rem;
+  height: 6rem;
+  margin-top: 4rem;
+  border-radius: 1rem;
+  background: #FF5800;
+  border: none;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+  font-size: 2rem;
+  text-align: center;
+  letter-spacing: -0.02em;
+  color: white;
+
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+  align-items: center;
+  cursor: pointer;
+}
+
+.camera {
+  padding: 9px;
 }

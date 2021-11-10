@@ -36,8 +36,11 @@ function WebcamCapture() {
   const history = useHistory();
 
   const nextStep = () => {
-    history.push("/qr");
-  };
+    if(confirmModal == true){
+      history.push('/qr')
+    }
+  }
+
 
   const goBack = () => {
     history.push("/");
@@ -127,24 +130,31 @@ function WebcamCapture() {
 
       {/* abrir modal de Erro */}
       <Modal
-        isOpen={Boolean(errorModal)}
-        msg="Você não esta com máscara!"
-        icon={errorIcon}
+     isOpen={Boolean(errorModal)}
+     header="OPS!"
+     msg="Verifique se a máscara cobre toda a área do nariz e da boca."
+     modalClass="modal-content"
+     icon={errorIcon}
       >
-        <Button buttonClass="btn-error" onClick={goBack}>
-          Voltar
-        </Button>
+      {setTimeout(() => {
+          nextStep()
+        }, 900)}
+
       </Modal>
 
       {/* abrir modal de confirmaçao */}
       <Modal
-        isOpen={Boolean(confirmModal)}
-        msg="Você esta com máscara!"
+     isOpen={Boolean(confirmModal)}
+        header="ÓTIMO!"
+        msg="Escaneamento realizado com sucesso!"
+        modalClass="modal-content"
         icon={sucessfulIcon}
+
       >
-        <Button buttonClass="btn-next" onClick={nextStep}>
-          Próximo
-        </Button>
+          {setTimeout(() => {
+          nextStep()
+        }, 900)}
+
       </Modal>
     </section>
   );

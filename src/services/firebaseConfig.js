@@ -2,6 +2,8 @@
 import { initializeApp } from 'firebase/app';
 import firebase from 'firebase/compat/app';
 import 'firebase/storage';
+import 'firebase/firestore';
+import 'firebase/compat/firestore';
 import 'firebase/compat/storage';
 
 
@@ -17,7 +19,7 @@ const firebaseConfig = {
 const start = firebase.initializeApp(firebaseConfig);
 
 const storage = firebase.storage();
-export const dataStore = firebase.firestore
+///export const dataStore = firebase.firestore().collection("ada")
 ////export const firestore =   firebase.firestore();
 export const db = start.firestore;
 

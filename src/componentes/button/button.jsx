@@ -1,4 +1,4 @@
-/* eslint-disable react/button-has-type */
+/* eslint-disable */
 /* eslint-disable react/prop-types */
 import React from 'react';
 import './button.css';
