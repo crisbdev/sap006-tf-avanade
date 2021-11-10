@@ -1,3 +1,4 @@
+/* eslint-disable  */
 import React from 'react';
 import waves from '../../assets/waves.png';
 import './footer.css';

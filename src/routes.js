@@ -1,3 +1,4 @@
+/* eslint-disable  */
 import React from 'react';
 /// /import { Route, Redirect }from 'react-router';
 import { Switch, Route } from 'react-router-dom';
@@ -10,5 +11,4 @@ export default () => (
     <Route exact path="/cam" component={WebcamCapture} />
     <Route exact path="/qr" component={QRscanner} />
   </Switch>
-
 );
