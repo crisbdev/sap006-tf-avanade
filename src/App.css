@@ -1,0 +1,29 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  list-style: none;
+  border: 0;
+}
+
+:root {
+  --color-background: #fff;
+  --color-background-hover: #E5E5E5;
+  --color-yellow: #F2B705;
+  --color-yellow-hover: #CA9800;
+  --color-light-orange: #F28705;
+  --color-dark-orange: #FF5800;
+  --color-gray: #0D0D0D;
+  --color-pink: #D9077A;
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  overflow: hidden;
+}
