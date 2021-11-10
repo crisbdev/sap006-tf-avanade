@@ -7,6 +7,7 @@ import firebase from 'firebase/compat/app';
 import 'firebase/firestore';
 import dataStore from '../../services/firebaseConfig';
 import Footer from '../../componentes/footer/footer.jsx';
+import Modal from '../../componentes/modal/modal';
 
 function QRscanner() {
  /// const ref = dataStore().collection("tokens")
@@ -40,7 +41,8 @@ function QRscanner() {
  //// <h1>{token.tittle}</h1>
  //// ))}
 
-
+  const [confirmModal, setConfirmModal] = useState(false);
+  const [errorModal, setErrorModal] = useState(false);
   const [qrscan, setQrscan] = useState('No result');
 
   ///console.log(qrscan);
