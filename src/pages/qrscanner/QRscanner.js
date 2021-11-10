@@ -31,6 +31,10 @@ function QRscanner() {
     });
   };
 
+  function openSlider() {
+    console.log('Open Slider');
+  }
+
   return (
     <section className="box">
       <div className="qrscan">
@@ -46,8 +50,8 @@ function QRscanner() {
         <p className="subtitle">
           Escaneie seu QR Code para validação do certificado de vacina.
         </p>
-        <Button type="submit" buttonClass="global-btn"> 
-          Escanear QR Code
+        <Button type="submit" buttonClass="global-btn" onClick={openSlider}> 
+          Ainda não possui certificado?
         </Button>
       </div>
       <Footer />
