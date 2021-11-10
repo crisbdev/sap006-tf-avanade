@@ -11,5 +11,4 @@ export default () => (
     <Route exact path="/cam" component={WebcamCapture} />
     <Route exact path="/qr" component={QRscanner} />
   </Switch>
-
 );
