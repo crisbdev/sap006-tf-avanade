@@ -1,3 +1,4 @@
+/* eslint-disable  */
 import React from 'react';
 /// /import { Route, Redirect }from 'react-router';
 import { Switch, Route } from 'react-router-dom';
