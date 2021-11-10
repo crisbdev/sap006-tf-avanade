@@ -3,13 +3,16 @@ import React, { useRef, useCallback, useState } from "react";
 import { useHistory } from 'react-router-dom';
 import Webcam from "react-webcam";
 import "./webcam.css";
+import '../../App.css';
+import "../qrscanner/Qrscanner.css";
 import { v4 as uuid } from "uuid";
 import storage from '../../services/firebaseConfig';
 import Modal from '../../componentes/modal/modal';
 import Button from '../../componentes/button/button';
 import errorIcon from '../../assets/error-icon.png';
 import sucessfulIcon from '../../assets/check-icon.png';
-import CamLogo from '../../assets/camera.png';
+// import CamLogo from '../../assets/camera.png';
+import Footer from '../../componentes/footer/footer.jsx';
 
 const videoConstraints = {
   width: 100,
@@ -35,7 +38,7 @@ function WebcamCapture() {
   }
 
   const goBack = () => {
-    history.push('/cam')
+    history.push('/')
   }
 
   const capture = useCallback(() => {
@@ -94,12 +97,9 @@ function WebcamCapture() {
   }, []);
   return (
 
-    <section className="container">
+    <section className="box-cam">
       <div className="webcamCapture">
       {/* {loading ? <img src={Loading} alt="Loading"></img> : false} */}
-
-        <img className="logo-cam" src={CamLogo} />
-
         <Webcam
           className='webcam'
           audio={false}
@@ -110,10 +110,16 @@ function WebcamCapture() {
           videoConstraints={videoConstraints}
         />
       </div>
-      <Button
-        buttonClass="button-webcam"
-        onClick={capture}
-      ></Button>
+      <div className="info">
+        <h1 className="title">Face Scan</h1>
+        <p className="subtitle">
+          Escaneie seu rosto para liberar a validação do certificado de vacina.
+        </p>
+        <Button type="submit" buttonClass="global-btn" onClick={capture}> 
+          Escanear meu Rosto
+        </Button>
+      </div>
+      <Footer />
 
       {/* abrir modal de Erro */}
       <Modal
@@ -142,7 +148,6 @@ function WebcamCapture() {
           Próximo
         </Button>
       </Modal>
-
     </section>
 
   );

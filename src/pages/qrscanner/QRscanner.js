@@ -3,8 +3,12 @@
 import React, { useState } from 'react';
 import QrScan from 'react-qr-reader';
 import './Qrscanner.css';
+import '../../App.css';
 import firebase from 'firebase/compat/app';
 import dataStore from '../../services/firebaseConfig';
+import Footer from '../../componentes/footer/footer.jsx';
+import Button from '../../componentes/button/button.jsx';
+// import CamLogo from '../../assets/camera.png';
 
 function QRscanner() {
   const [qrscan, setQrscan] = useState('No result');
@@ -28,7 +32,7 @@ function QRscanner() {
   };
 
   return (
-    <div className="box">
+    <section className="box">
       <div className="qrscan">
         <QrScan
           className="camera"
@@ -39,14 +43,15 @@ function QRscanner() {
       </div>
       <div className="info">
         <h1 className="title">QR Code Scan</h1>
-        <span className="subtitle">
-          Escaneie seu rosto para liberar a validação do certificado de vacina.
-        </span>
-        <button type="submit" className="btnQr">
+        <p className="subtitle">
+          Escaneie seu QR Code para validação do certificado de vacina.
+        </p>
+        <Button type="submit" buttonClass="global-btn"> 
           Escanear QR Code
-        </button>
+        </Button>
       </div>
-    </div>
+      <Footer />
+    </section>
   );
 }
 
