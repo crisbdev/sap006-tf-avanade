@@ -1,3 +1,6 @@
+div{
+  z-index: 0;
+}
 .box {
   display: flex;
   flex-direction: column;

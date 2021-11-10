@@ -9,10 +9,14 @@
 }
 
 .modal-content {
-    background-color: none;
+    position: absolute;
+    z-index: 2 !important;
+    background-color: #faf6f3 ;
     border-radius: 1rem;
     width: 34rem;
-    margin: 15rem auto 0 auto;
+    height: 760px;
+    margin-left: 16%;
+    margin-top: 18%;
     display: flex;
     flex-direction: column;
     align-items: center;
