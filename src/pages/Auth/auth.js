@@ -118,7 +118,9 @@ function WebcamCapture() {
       {/* abrir modal de Erro */}
       <Modal
         isOpen={Boolean(errorModal)}
-        msg="Você não esta com máscara!"
+        header="OPS!"
+        msg="Verifique se a máscara cobre toda a área do nariz e da boca."
+        modalClass="modal-content"
         icon={errorIcon}
       >
         <Button
@@ -132,7 +134,9 @@ function WebcamCapture() {
       {/* abrir modal de confirmaçao */}
       <Modal
         isOpen={Boolean(confirmModal)}
-        msg="Você esta com máscara!"
+        header="ÓTIMO!"
+        msg="Escaneamento realizado com sucesso!"
+        modalClass="modal-content"
         icon={sucessfulIcon}
       >
         <Button
