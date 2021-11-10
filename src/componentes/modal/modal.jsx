@@ -18,7 +18,7 @@ function ModalMsg({
       <div className="modal-overlay">
       
         <div className={modalClass}>
-        <img className="iconStyle" src={icon} alt="message" />
+          <img className="iconStyle" src={icon} alt="message" />
           <h1>{header}</h1>
           <h2 className="subtitle-modal">{subtitle}</h2>
           <p>{msg} </p>
