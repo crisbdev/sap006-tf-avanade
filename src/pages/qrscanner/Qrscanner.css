@@ -1,20 +1,20 @@
 div{
   z-index: 0;
 }
+
 .box {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 2rem;
+  margin-top: 8rem;
 }
 
 .qrscan{
-  width: 30rem;
+  width: 30rem; 
 }
 
 section {
   border-radius: 50%;
-
 }
 
 .info{
@@ -65,8 +65,14 @@ section {
 }
 
 .camera {
-  padding: 79px;
+  width: 27rem;
+  height: 27rem;
+  border: 20px solid #FF5800;
+  box-shadow:
+    0 0 0 20px #FFBC98,
+    0 0 10px 40px #FFE2D2;
 }
+
 .modal-content {
   position: absolute;
   z-index: 2 !important;

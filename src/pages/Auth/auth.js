@@ -36,14 +36,15 @@ function WebcamCapture() {
   const history = useHistory();
 
   const nextStep = () => {
-    if(confirmModal == true){
+    if (confirmModal == true){
       history.push('/qr')
     }
-  }
-
+  };
 
   const goBack = () => {
-    history.push("/");
+    if (errorModal == true){
+      history.push('/')
+    }
   };
 
   const capture = useCallback(() => {
@@ -87,7 +88,11 @@ function WebcamCapture() {
                   response.data[0].faceAttributes.mask.noseAndMouthCovered;
                 console.log(result);
                 if (result === true) {
-                  setConfirmModal(true);
+                  setConfirmModal(true)
+                  // , () => {setTimeout(() => {
+                  //   nextStep()
+                  // }, 900)}  ;
+                  
                 } else {
                   setErrorModal(true);
                 }
@@ -130,30 +135,33 @@ function WebcamCapture() {
 
       {/* abrir modal de Erro */}
       <Modal
-     isOpen={Boolean(errorModal)}
+     isOpen={Boolean(errorModal) }
      header="OPS!"
      msg="Verifique se a máscara cobre toda a área do nariz e da boca."
      modalClass="modal-content"
      icon={errorIcon}
       >
+
       {setTimeout(() => {
-          nextStep()
+          goBack()
         }, 900)}
 
       </Modal>
 
       {/* abrir modal de confirmaçao */}
       <Modal
-     isOpen={Boolean(confirmModal)}
+        isOpen={Boolean(confirmModal)}
         header="ÓTIMO!"
         msg="Escaneamento realizado com sucesso!"
         modalClass="modal-content"
         icon={sucessfulIcon}
+    
 
       >
           {setTimeout(() => {
           nextStep()
-        }, 900)}
+        }, 1000)}
+
 
       </Modal>
     </section>
