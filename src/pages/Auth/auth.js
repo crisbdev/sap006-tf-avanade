@@ -1,11 +1,15 @@
 /*eslint-disable*/
-import React, { useRef, useCallback, useState } from 'react';
-import Webcam from 'react-webcam';
-import './webcam.css';
-import { v4 as uuid } from 'uuid';
-import storage from '../services/firebaseConfig';
-import CamLogo from '../assets/camera.png';
-import Loading from '../assets/loading.gif';
+import React, { useRef, useCallback, useState } from "react";
+import { useHistory } from 'react-router-dom';
+import Webcam from "react-webcam";
+import "./webcam.css";
+import { v4 as uuid } from "uuid";
+import storage from '../../services/firebaseConfig';
+import Modal from '../../componentes/modal/modal';
+import Button from '../../componentes/button/button';
+import errorIcon from '../../assets/error-icon.png';
+import sucessfulIcon from '../../assets/check-icon.png';
+import CamLogo from '../../assets/camera.png';
 
 const videoConstraints = {
   width: 100,
@@ -21,7 +25,18 @@ function WebcamCapture() {
   const webcamRef = useRef(null);
   const [loading, setLoading] = useState(false);
 
-  const [url, setUrl] = useState('');
+  const [url, setUrl] = useState("");
+  const [confirmModal, setConfirmModal] = useState(false);
+  const [errorModal, setErrorModal] = useState(false);
+  const history = useHistory();
+
+  const nextStep = () => {
+    history.push('/qr')
+  }
+
+  const goBack = () => {
+    history.push('/cam')
+  }
 
   const capture = useCallback(() => {
     const imageSrc = webcamRef.current.getScreenshot();
@@ -59,15 +74,14 @@ function WebcamCapture() {
               },
               headers: { 'Ocp-Apim-Subscription-Key': subscriptionKey },
             })
-              .then((response) => {
-                setLoading(false);
-                const result = response.data[0].faceAttributes.mask.noseAndMouthCovered;
-            
-                /// console.log(result)
+              .then(function (response) {
+                const result =
+                  response.data[0].faceAttributes.mask.noseAndMouthCovered;
+                console.log(result)
                 if (result === true) {
-                  alert('Você esta com mascara');
+                  setConfirmModal(true)
                 } else {
-                  alert('Você nao esta com mascara!');
+                  setErrorModal(true)
                 }
               })
               .catch((error) => {
@@ -82,12 +96,12 @@ function WebcamCapture() {
 
     <>
       <div className="webcamCapture">
-      {loading ? <img src={Loading} alt="Loading"></img> : false}
+      {/* {loading ? <img src={Loading} alt="Loading"></img> : false} */}
 
         <img className="logo-cam" src={CamLogo} />
 
         <Webcam
-          className="webcam"
+          className='webcam'
           audio={false}
           ref={webcamRef}
           height={videoConstraints.heigth}
@@ -96,12 +110,38 @@ function WebcamCapture() {
           videoConstraints={videoConstraints}
         />
       </div>
-      <div className="text-pic">
-        <h3>Face Scan</h3>
-        <h4>Escaneie o seu rosto para liberar a validação do certificado de vacina</h4>
-      </div>
+      <Button
+        buttonClass="button-webcam"
+        onClick={capture}
+      ></Button>
 
-      <button className="button-webcam" onClick={capture}>Escanear meu rosto</button>
+      {/* abrir modal de Erro */}
+      <Modal
+        isOpen={Boolean(errorModal)}
+        msg="Você não esta com máscara!"
+        icon={errorIcon}
+      >
+        <Button
+          buttonClass="btn-error"
+          onClick={goBack}
+        >
+          Voltar
+        </Button>
+      </Modal>
+
+      {/* abrir modal de confirmaçao */}
+      <Modal
+        isOpen={Boolean(confirmModal)}
+        msg="Você esta com máscara!"
+        icon={sucessfulIcon}
+      >
+        <Button
+          buttonClass="btn-next"
+          onClick={nextStep}
+        >
+          Próximo
+        </Button>
+      </Modal>
 
     </>
 
