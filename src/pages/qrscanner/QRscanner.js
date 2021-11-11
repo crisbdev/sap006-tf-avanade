@@ -83,19 +83,19 @@ function QRscanner() {
           icon={sucessfulIcon}
         >
           <Button buttonClass="btn-next" onClick={backToQr}>
-            Próximo
+            PRÓXIMO
           </Button>
         </Modal>
         <Modal
           isOpen={Boolean(errorModal)}
-          head="Ops"
-          subtitle="Qr code não encontrado"
+          head="Ops!"
+          subtitle="QR code não encontrado."
           msg="Não foi possível validar sua vacinação, busque atendimento com um de nossos colaboradores."
           modalClass="modal-content"
           icon={errorIcon}
         >
           <Button buttonClass="btn-error" onClick={backToQr}>
-            Voltar 
+            VOLTAR 
           </Button>
         </Modal>
 
