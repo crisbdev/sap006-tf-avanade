@@ -6,7 +6,7 @@ import 'firebase/firestore';
 import 'firebase/compat/firestore';
 import 'firebase/compat/storage';
 
-// firebase reserva
+// ***** firebase reserva
 // const firebaseConfig = {
 //   apiKey: "AIzaSyBeGxIBk7SxBHHraB48S6fdl-NvGKnwyp0",
 //   authDomain: "avanade-tf-2021.firebaseapp.com",
@@ -16,7 +16,7 @@ import 'firebase/compat/storage';
 //   appId: "1:102260884887:web:b3ce5afd4971c1a45730d2"
 // };
 
-// ***** firebase Julli ****
+// ***** firebase reserva 2 ****
 const firebaseConfig = {
   apiKey: "AIzaSyB-j5KajPoGLJuIcOn6HdZ6Yv4ptT8u04o",
   authDomain: "teste-jul.firebaseapp.com",

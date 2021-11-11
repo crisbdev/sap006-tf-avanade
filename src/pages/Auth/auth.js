@@ -116,7 +116,7 @@ function WebcamCapture() {
         <h1 className="title">Face Scan</h1>
         <p className="subtitle">
           Escaneie seu rosto para liberar a validação do certificado de vacina.
-        </p>
+        </p> 
 
         {loading ? (
           <Loading />
@@ -163,8 +163,11 @@ function WebcamCapture() {
           PRÓXIMO
         </Button>
 
+    
       </Modal>
+      
     </section>
   );
-}
+        }
 export default WebcamCapture;
+
