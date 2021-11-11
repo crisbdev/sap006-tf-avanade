@@ -78,12 +78,40 @@
 
 
 .btn-next {
-    padding: 1rem ;
-    border-radius: 2rem;
-    background-color: #45C352;
+    width: 20rem;
+    height: 5rem;
+    margin-top: 5rem;
+    border-radius: 1rem;
+    background: #45C352;
     border: none;
-    cursor: pointer;
+    box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
+    font-size: 1.5rem;
+    text-align: center;
+    letter-spacing: -0.02em;
     color: white;
-    width: 17rem;
-    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    align-items: center;
+    cursor: pointer;
+}
+
+.btn-error {
+    width: 20rem;
+    height: 5rem;
+    margin-top: 5rem;
+    border-radius: 1rem;
+    background: #FF5800;
+    border: none;
+    box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
+    font-size: 1.5rem;
+    text-align: center;
+    letter-spacing: -0.02em;
+    color: white;
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    align-items: center;
+    cursor: pointer;
+    
 }

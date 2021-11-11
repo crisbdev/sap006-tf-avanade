@@ -124,7 +124,15 @@ function QRscanner() {
           }
           icon={Vacina}
           modalClass="modal-content"
-        ></Modal>
+        >
+          <Button
+          buttonClass="btn-error"
+          onClick={backToQr}
+        >
+          INICIO
+        </Button>
+
+        </Modal>
 
         <div className="box">
           <div className="qrscan">
