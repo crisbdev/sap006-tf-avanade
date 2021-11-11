@@ -53,14 +53,14 @@ function QRscanner() {
             post.data().status === "not auth" &&
             post.data().title != dataprint
           ) {
-            alert("NAO AUTORIZADO");
+            /////alert("NAO AUTORIZADO");
           }
         });
       });
       refSec.get().then((snap) => {
         snap.forEach((post) => {
           if (dataprint === null) {
-            /// console.log("qr nao lido")
+            console.log("qr nao lido")
           } else if (
             post.data().status === "not auth" &&
             post.data().title === dataprint
@@ -82,17 +82,24 @@ function QRscanner() {
           modalClass="modal-content"
           icon={sucessfulIcon}
         >
-          <Button buttonClass="global-btn" onClick={backToQr}>
+          <Button buttonClass="btn-next" onClick={backToQr}>
             Próximo
+          </Button>
+        </Modal>
+        <Modal
+          isOpen={Boolean(errorModal)}
+          head="Ops"
+          subtitle="Qr code não encontrado"
+          msg="Não foi possível validar sua vacinação, busque atendimento com um de nossos colaboradores."
+          modalClass="modal-content"
+          icon={errorIcon}
+        >
+          <Button buttonClass="btn-error" onClick={backToQr}>
+            Voltar 
           </Button>
         </Modal>
 
         <Modal
-          isOpen={Boolean(errorModal)}
-          head="Ops!"
-          subtitle="Vacinação não confirmada..."
-          msg="Não foi possível validar sua vacinação, busque atendimento com um de nossos colaboradores."
-          modalClass="modal-content"
           icon={errorIcon}
         >
           <Button buttonClass="global-btn" onClick={backToQr}>
@@ -140,7 +147,7 @@ function QRscanner() {
 
         <div className="box">
           <div className="qrscan">
-            <QrScan className="camera" delay={500} onScan={handleScan} />
+            <QrScan className="camera" delay={3000} onScan={handleScan} />
           </div>
           <div className="info">
             <h1 className="title">QR Code Scan</h1>
