@@ -1,3 +1,11 @@
+*:after,
+*:before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -17,21 +25,65 @@
     height: 760px;
     margin-left: 18%;
     margin-top: 24%;
+    margin-bottom: 15px;
     display: flex;
+    height: 760px;
     flex-direction: column;
     align-items: center;
-    padding: 3rem;  
+    padding: 3rem;
+    z-index: 2 !important;
+    position: absolute;  
+    overflow: auto;
 }
 
 .iconStyle {
-    width: 10rem;
-
+    width: 15rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.times-circle {
-    color: var(--color-red);
+.content-msg {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Jost;
 }
-  
-.check-circle{
-    color: var(--color-green);
+
+.header-modal {
+    font-size: 2rem;
+    padding: 3rem;
+}
+
+.subtitle-modal{
+    font-size: 1.5rem;
+}
+
+.msg-final{
+    font-size: 2rem;
+    text-align: center;
+}
+
+
+.modal-end {
+    background-color: #faf6f3;
+    border-radius: 1rem;
+    width: 34rem;
+    margin: 15rem auto 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3rem;
+}
+
+
+.btn-next {
+    padding: 1rem ;
+    border-radius: 2rem;
+    background-color: #45C352;
+    border: none;
+    cursor: pointer;
+    color: white;
+    width: 17rem;
+    font-size: 16px;
 }

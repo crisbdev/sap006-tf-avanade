@@ -8,14 +8,13 @@ import 'firebase/compat/storage';
 
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyB4FFExJcW58tvCypBK0ds5dQh-nx-jwHI',
-  authDomain: 'sap006-tf-avanade.firebaseapp.com',
-  projectId: 'sap006-tf-avanade',
-  storageBucket: 'sap006-tf-avanade.appspot.com',
-  messagingSenderId: '698019498679',
-  appId: '1:698019498679:web:b1d3a11377083bf1a89b32',
+  apiKey: "AIzaSyB-j5KajPoGLJuIcOn6HdZ6Yv4ptT8u04o",
+  authDomain: "teste-jul.firebaseapp.com",
+  projectId: "teste-jul",
+  storageBucket: "teste-jul.appspot.com",
+  messagingSenderId: "491879338504",
+  appId: "1:491879338504:web:b506dc4157a15ae63177bd"
 };
-
 const start = firebase.initializeApp(firebaseConfig);
 
 const storage = firebase.storage();
