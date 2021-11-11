@@ -82,8 +82,8 @@ function QRscanner() {
           modalClass="modal-content"
           icon={sucessfulIcon}
         >
-          <Button buttonClass="global-btn" onClick={backToQr}>
-            Próximo
+          <Button buttonClass="btn-next" onClick={backToQr}>
+            PRÓXIMO
           </Button>
         </Modal>
 
@@ -95,8 +95,8 @@ function QRscanner() {
           modalClass="modal-content"
           icon={errorIcon}
         >
-          <Button buttonClass="global-btn" onClick={backToQr}>
-            Próximo
+          <Button buttonClass="btn-error" onClick={backToQr}>
+            INICIO
           </Button>
         </Modal>
 
