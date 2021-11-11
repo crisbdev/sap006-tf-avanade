@@ -13,6 +13,8 @@ import Footer from "../../componentes/footer/footer.jsx";
 import Modal from "../../componentes/modal/modal";
 import Button from "../../componentes/button/button";
 import Vacina from "../../assets/vacina.png";
+import errorIcon from "../../assets/error-icon.png";
+import sucessfulIcon from "../../assets/check-icon.png";
 
 function QRscanner() {
   /// const ref = dataStore().collection("tokens")
@@ -36,7 +38,7 @@ function QRscanner() {
       setQrscan(data);
 
       const dataprint = data;
-      /// console.log(dataprint)
+       console.log(dataprint)
 
       ref.get().then((snap) => {
         snap.forEach((post) => {
@@ -74,24 +76,26 @@ function QRscanner() {
       <div>
         <Modal
           isOpen={Boolean(confirmModal)}
-          head="ÓTIMO!"
-          subtitle="VACINADO"
-          msg=""
+          head="Ótimo!"
+          subtitle="Vacinação em dia!"
+          msg="Acesso permitido ao estabelecimento"
           modalClass="modal-content"
+          icon={sucessfulIcon}
         >
-          <button buttonClass="btn-next" onClick={backToQr}>
+          <Button buttonClass="global-btn" onClick={backToQr}>
             Próximo
-          </button>
+          </Button>
         </Modal>
 
         <Modal
           isOpen={Boolean(errorModal)}
           head="Ops!"
-          subtitle="NÃO VACINADO"
-          msg=""
+          subtitle="Vacinação não confirmada..."
+          msg="Não foi possível validar sua vacinação, busque atendimento com um de nossos colaboradores."
           modalClass="modal-content"
+          icon={errorIcon}
         >
-          <Button buttonClass="btn-next" onClick={backToQr}>
+          <Button buttonClass="global-btn" onClick={backToQr}>
             Próximo
           </Button>
         </Modal>
