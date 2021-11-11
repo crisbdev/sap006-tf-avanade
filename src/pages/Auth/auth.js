@@ -42,9 +42,7 @@ function WebcamCapture() {
   };
 
   const goBack = () => {
-    if (errorModal == true){
-      history.push('/')
-    }
+    window.location.reload()
   };
 
   const capture = useCallback(() => {
@@ -89,9 +87,6 @@ function WebcamCapture() {
                 console.log(result);
                 if (result === true) {
                   setConfirmModal(true)
-                  // , () => {setTimeout(() => {
-                  //   nextStep()
-                  // }, 900)}  ;
                   
                 } else {
                   setErrorModal(true);
@@ -142,9 +137,12 @@ function WebcamCapture() {
      icon={errorIcon}
       >
 
-      {setTimeout(() => {
-          goBack()
-        }, 900)}
+        <Button
+          buttonClass="btn-error"
+          onClick={goBack}
+        >
+          VOLTAR
+        </Button>
 
       </Modal>
 
@@ -158,14 +156,18 @@ function WebcamCapture() {
     
 
       >
-          {setTimeout(() => {
-          nextStep()
-        }, 1000)}
+        <Button
+          buttonClass="btn-next"
+          onClick={nextStep}
+        >
+          PRÓXIMO
+        </Button>
 
-
+    
       </Modal>
       
     </section>
   );
-}
+        }
 export default WebcamCapture;
+

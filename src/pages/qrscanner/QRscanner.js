@@ -13,14 +13,13 @@ import Footer from "../../componentes/footer/footer.jsx";
 import Modal from "../../componentes/modal/modal";
 import Button from "../../componentes/button/button";
 import Vacina from "../../assets/vacina.png";
-import { getDatabase, ref, child, get } from "firebase/database";
+import errorIcon from "../../assets/error-icon.png";
+import sucessfulIcon from "../../assets/check-icon.png";
 
 function QRscanner() {
   /// const ref = dataStore().collection("tokens")
-  const refe = firebase.firestore().collection("tokens");
+  const ref = firebase.firestore().collection("tokens");
   const refSec = firebase.firestore().collection("tokens-pendentes");
-  
-  
   /// console.log(ref)
   const [token, setToken] = useState([]);
 
@@ -36,37 +35,32 @@ function QRscanner() {
 
   /// console.log(qrscan);
     const handleScan = (data) => {
-      const dataprint = data;
-
       setQrscan(data);
- 
-      refe.get().then((snap) => {
+
+      const dataprint = data;
+       console.log(dataprint)
+
+      ref.get().then((snap) => {
         snap.forEach((post) => {
           if (
             post.data().title === dataprint &&
-            post.data().status === "auth" && dataprint != null
-            
-        
+            post.data().status === "auth"
           ) {
-            console.log("para aqui")
             setConfirmModal(true);
-
-          }else if (dataprint!=null){
-          
           } else if (dataprint === null) {
-             console.log("Sem um qr code para leitura")
+            // console.log("Sem um qr code para leitura")
           } else if (
             post.data().status === "not auth" &&
             post.data().title != dataprint
           ) {
-            alert("NAO AUTORIZADO");
+            /////alert("NAO AUTORIZADO");
           }
         });
       });
       refSec.get().then((snap) => {
         snap.forEach((post) => {
           if (dataprint === null) {
-            /// console.log("qr nao lido")
+            console.log("qr nao lido")
           } else if (
             post.data().status === "not auth" &&
             post.data().title === dataprint
@@ -82,24 +76,33 @@ function QRscanner() {
       <div>
         <Modal
           isOpen={Boolean(confirmModal)}
-          head="ÓTIMO!"
-          subtitle="VACINADO"
-          msg=""
+          head="Ótimo!"
+          subtitle="Vacinação em dia!"
+          msg="Acesso permitido ao estabelecimento"
           modalClass="modal-content"
+          icon={sucessfulIcon}
         >
-          <button buttonClass="btn-next" onClick={backToQr}>
+          <Button buttonClass="btn-next" onClick={backToQr}>
             Próximo
-          </button>
+          </Button>
+        </Modal>
+        <Modal
+          isOpen={Boolean(errorModal)}
+          head="Ops"
+          subtitle="Qr code não encontrado"
+          msg="Não foi possível validar sua vacinação, busque atendimento com um de nossos colaboradores."
+          modalClass="modal-content"
+          icon={errorIcon}
+        >
+          <Button buttonClass="btn-error" onClick={backToQr}>
+            Voltar 
+          </Button>
         </Modal>
 
         <Modal
-          isOpen={Boolean(errorModal)}
-          head="Ops!"
-          subtitle="NÃO VACINADO"
-          msg=""
-          modalClass="modal-content"
+          icon={errorIcon}
         >
-          <Button buttonClass="btn-next" onClick={backToQr}>
+          <Button buttonClass="global-btn" onClick={backToQr}>
             Próximo
           </Button>
         </Modal>
@@ -132,17 +135,19 @@ function QRscanner() {
           }
           icon={Vacina}
           modalClass="modal-content"
-        ></Modal>
+        >
+          <Button
+          buttonClass="btn-error"
+          onClick={backToQr}
+        >
+          INICIO
+        </Button>
+
+        </Modal>
 
         <div className="box">
           <div className="qrscan">
-            <QrScan 
-            className="camera"
-             delay={1000}
-              onScan={handleScan}
-              onRead={handleScan}
-               />
-            
+            <QrScan className="camera" delay={3000} onScan={handleScan} />
           </div>
           <div className="info">
             <h1 className="title">QR Code Scan</h1>
