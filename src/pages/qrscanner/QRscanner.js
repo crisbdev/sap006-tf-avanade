@@ -1,5 +1,4 @@
 /*eslint-disable*/
-/* ewline required at end of file but not found */
 import React, { useEffect, useState } from 'react';
 import QrScan from 'react-qr-reader';
 import './Qrscanner.css';
@@ -9,7 +8,6 @@ import { useHistory } from 'react-router-dom';
 import dataStore from '../../services/firebaseConfig';
 import Footer from '../../componentes/footer/footer.jsx';
 import Modal from '../../componentes/modal/modal';
-import Button from '../../componentes/button/button';
 
 function QRscanner() {
   /// const ref = dataStore().collection("tokens")
